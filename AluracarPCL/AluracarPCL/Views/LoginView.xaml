@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:AluracarPCL.ViewModel"
+             x:Class="AluracarPCL.Views.LoginView">
+    <ContentPage.BindingContext>
+        <vm:LoginViewModel></vm:LoginViewModel>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="Center" Margin="64">
+            <Image Source="aluracar.png" />
+            <Entry Placeholder="Login" Text="{Binding Usuario}" />
+            <Entry Placeholder="Senha" Text="{Binding Senha}" IsPassword="True"/>
+            <Button Text="Conectar-se" Command="{Binding LogarCommand}"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

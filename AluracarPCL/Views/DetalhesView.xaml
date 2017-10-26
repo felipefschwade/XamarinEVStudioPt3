@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Aluracar.Views.DetalhesView"
+             Title="{Binding Veiculo.Nome}">
+    <StackLayout>
+        <TableView>
+            <TableRoot>
+                <TableSection Title="Acessórios">
+                    <SwitchCell Text="{Binding TextoAbs}" On="{Binding TemAbs, Mode=TwoWay}"/>
+                    <SwitchCell Text="{Binding TextoArCond}" On="{Binding TemAr, Mode=TwoWay}"/>
+                    <SwitchCell Text="{Binding TextoMp3}" On="{Binding TemMp3, Mode=TwoWay}"/>
+                    <TextCell Text="{Binding ValorTotal, Mode=TwoWay}" />
+                </TableSection>
+            </TableRoot>
+        </TableView>
+        <Button VerticalOptions="End" Text="Proximo" Command="{Binding ProximoCommand}"/>
+    </StackLayout>
+</ContentPage>
