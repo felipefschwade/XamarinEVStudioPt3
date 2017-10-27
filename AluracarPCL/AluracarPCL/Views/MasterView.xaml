@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AluracarPCL.Views.MasterView"
+             Title="Perfil">
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
+            <Label Text="Nome do Usuário" />
+            <Label Text="Email do Usuário" />
+            <Button Text="Editar"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -20,20 +20,10 @@ namespace AluracarPCL.Services
                         new KeyValuePair<string, string>("email", credentials.Email),
                         new KeyValuePair<string, string>("senha", credentials.Senha)
                     });
+                HttpResponseMessage response = null;
                 try
                 {
-                    var response = await client.PostAsync(URL_LOGIN, conteudo);
-                    if (response.IsSuccessStatusCode) MessagingCenter.Send<Usuario>(new Usuario(), "LoginSuccess");
-                    else
-                    {
-                        var stream = await response.Content.ReadAsStreamAsync();
-                        using (var streamReader = new StreamReader(stream))
-                        {
-                            var text = JsonConvert.DeserializeObject<MensagemJson>(await streamReader.ReadToEndAsync());
-                            MessagingCenter.Send<LoginException>(
-                                new LoginException(text.Mensagem), "LoginFailed");
-                        }
-                    }
+                    response = await client.PostAsync(URL_LOGIN, conteudo);
                 }
                 catch (Exception)
                 {
@@ -42,6 +32,17 @@ namespace AluracarPCL.Services
                             @"Ocorreu um erro ao conectar-se com o servidor. Por favor, verifique sua conexão com a internet e tente novamente mais tarde."),
                             "LoginFailed"
                         );
+                }
+                if (response.IsSuccessStatusCode) MessagingCenter.Send<Usuario>(new Usuario(), "LoginSuccess");
+                else
+                {
+                    var stream = await response.Content.ReadAsStreamAsync();
+                    using (var streamReader = new StreamReader(stream))
+                    {
+                        var text = JsonConvert.DeserializeObject<MensagemJson>(await streamReader.ReadToEndAsync());
+                        MessagingCenter.Send<LoginException>(
+                            new LoginException(text.Mensagem), "LoginFailed");
+                    }
                 }
             }
         }
