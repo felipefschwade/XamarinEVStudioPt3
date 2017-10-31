@@ -18,16 +18,16 @@ namespace AluracarPCL.Views
 
         protected override async void OnAppearing()
         {
-            base.OnAppearing();
             await Model.GetVeiculosAsync();
             MessagingCenter.Subscribe<Carro>(this, "VeiculoSelecionado",
                 (carro) => Navigation.PushAsync(new DetalhesView(carro)));
+            base.OnAppearing();
         }
 
         protected override void OnDisappearing()
         {
-            base.OnDisappearing();
             MessagingCenter.Unsubscribe<Carro>(this, "VeiculoSelecionado");
+            base.OnDisappearing();
         }
 
     }

@@ -3,14 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AluracarPCL.Views.MasterDetailView"
              xmlns:view="clr-namespace:AluracarPCL.Views">
-  <MasterDetailPage.Master>
-  </MasterDetailPage.Master>
-    <view:MasterDetailView></view:MasterDetailView>
-  <MasterDetailPage.Detail>
+    <MasterDetailPage.Master>
+        <view:MasterView></view:MasterView>
+    </MasterDetailPage.Master>
+    <MasterDetailPage.Detail>
         <NavigationPage>
             <x:Arguments>
                 <view:ListagemView></view:ListagemView>
             </x:Arguments>
         </NavigationPage>
-  </MasterDetailPage.Detail>
+    </MasterDetailPage.Detail>
 </MasterDetailPage>

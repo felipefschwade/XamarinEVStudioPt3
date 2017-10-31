@@ -23,7 +23,7 @@ namespace AluracarPCL
             MessagingCenter.Subscribe<Usuario>(this, "LoginSuccess", (usuario) => 
             {
                 // MainPage = new NavigationPage(new ListagemView());
-                MainPage = new MasterDetailView();
+                MainPage = new MasterDetailView(usuario);
             });
         }
 

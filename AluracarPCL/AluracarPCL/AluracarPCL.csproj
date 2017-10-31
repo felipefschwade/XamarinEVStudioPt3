@@ -50,6 +50,7 @@
     <Compile Include="ViewModel\DetalhesViewModel.cs" />
     <Compile Include="ViewModel\ListagemViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
+    <Compile Include="ViewModel\MasterViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="Views\ListagemView.xaml.cs">
       <DependentUpon>ListagemView.xaml</DependentUpon>

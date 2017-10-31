@@ -33,16 +33,17 @@ namespace AluracarPCL.Services
                             "LoginFailed"
                         );
                 }
-                if (response.IsSuccessStatusCode) MessagingCenter.Send<Usuario>(new Usuario(), "LoginSuccess");
+                if (response.IsSuccessStatusCode)
+                {
+                    var resultadoString = await response.Content.ReadAsStringAsync();
+                    var usuarioJSON = JsonConvert.DeserializeObject<UsuarioJSON>(resultadoString);
+                    MessagingCenter.Send<Usuario>(usuarioJSON.Usuario, "LoginSuccess");
+                }
                 else
                 {
-                    var stream = await response.Content.ReadAsStreamAsync();
-                    using (var streamReader = new StreamReader(stream))
-                    {
-                        var text = JsonConvert.DeserializeObject<MensagemJson>(await streamReader.ReadToEndAsync());
-                        MessagingCenter.Send<LoginException>(
-                            new LoginException(text.Mensagem), "LoginFailed");
-                    }
+                    var text = JsonConvert.DeserializeObject<MensagemJson>(await response.Content.ReadAsStringAsync());
+                    MessagingCenter.Send<LoginException>(
+                        new LoginException(text.Mensagem), "LoginFailed");
                 }
             }
         }

@@ -21,6 +21,11 @@ namespace AluracarPCL.Model
         [JsonProperty("telefone")]
         public string Telefone { get; set; }
         [JsonProperty("dataNascimento")]
-        public DateTime DataNascimento { get; set; }
+        public string DataNascimento { get; set; }
+    }
+    public class UsuarioJSON
+    {
+        [JsonProperty("usuario")]
+        public Usuario Usuario { get; set; }
     }
 }
