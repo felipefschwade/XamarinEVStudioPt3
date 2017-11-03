@@ -4,7 +4,7 @@
              x:Class="AluracarPCL.Views.AgendamentoView"
              Title="{Binding Veiculo.Nome}">
     <StackLayout>
-        <ActivityIndicator IsRunning="{Binding IsBusy}"/>
+        <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}"/>
         <TableView Intent="Form">
             <TableRoot>
                 <TableSection Title="Seus Dados">

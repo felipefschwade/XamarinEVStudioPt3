@@ -27,16 +27,32 @@ namespace AluracarPCL.Views
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            MessagingCenter.Subscribe<Usuario>(this, "EditarPerfil", (usuario) => {
-                this.CurrentPage = this.Children[1];
-            });
+            AssinaMensagens();
         }
+
 
         protected override void OnDisappearing()
         {
             base.OnDisappearing();
+            CancelaMensagens();
+        }
+
+        private void CancelaMensagens()
+        {
             MessagingCenter.Unsubscribe<Usuario>(this, "EditarPerfil");
-            
+            MessagingCenter.Unsubscribe<Usuario>(this, "SucessoSalvarUsuario");
+        }
+
+        private void AssinaMensagens()
+        {
+            MessagingCenter.Subscribe<Usuario>(this, "EditarPerfil", (usuario) =>
+            {
+                this.CurrentPage = this.Children[1];
+            });
+            MessagingCenter.Subscribe<Usuario>(this, "SucessoSalvarUsuario", (usuario) =>
+            {
+                this.CurrentPage = this.Children[0];
+            });
         }
     }
 }

@@ -1,9 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:Converters="clr-namespace:AluracarPCL.Converter"
              x:Class="AluracarPCL.Views.MasterView"
              xmlns:local="clr-namespace:AluracarPCL.Views"
              Title="Perfil">
+    <TabbedPage.Resources>
+        <ResourceDictionary>
+            <Converters:EditandoInversoConverter x:Key="Negativo">
+                
+            </Converters:EditandoInversoConverter>
+        </ResourceDictionary>
+    </TabbedPage.Resources>
     <TabbedPage.Children>
         <ContentPage Title="Usuário">
             <Frame VerticalOptions="CenterAndExpand" HorizontalOptions="Fill" Margin="15" OutlineColor="Silver">
@@ -17,7 +25,27 @@
             </Frame>
         </ContentPage>
         <ContentPage Title="Editar">
-            
+            <Frame VerticalOptions="CenterAndExpand" HorizontalOptions="Fill" Margin="15" OutlineColor="Silver">
+                <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
+                    <TableView Intent="Form">
+                        <TableRoot>
+                            <TableSection Title="Dados Pessoais">
+                                <EntryCell Placeholder="Seu Nome" IsEnabled="{Binding Editando}" Text="{Binding Nome}" />
+                                <EntryCell Placeholder="Seu Email" IsEnabled="{Binding Editando}" Text="{Binding Email}" />
+                                <EntryCell Placeholder="Seu telefone" IsEnabled="{Binding Editando}" Text="{Binding Telefone}" Keyboard="Telephone"/>
+                                <ViewCell>
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label Text="Data de Nascimento" />
+                                        <DatePicker Date="{Binding DataNascimento}" IsEnabled="{Binding Editando}"></DatePicker>
+                                    </StackLayout>
+                                </ViewCell>
+                            </TableSection>
+                        </TableRoot>
+                    </TableView>
+                    <Button Text="Salvar" IsVisible="{Binding Editando}" Command="{Binding SalvarPerfilCommand}"/>
+                    <Button Text="Editar" IsVisible="{Binding Editando, Converter={StaticResource Key=Negativo}}" Command="{Binding EditarCommand}"></Button>
+                </StackLayout>
+            </Frame>
         </ContentPage>
     </TabbedPage.Children>
 </TabbedPage>
